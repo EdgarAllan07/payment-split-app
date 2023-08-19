@@ -11,16 +11,16 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  
+
   return (
     <html lang="en">
       <body>
         <Layout>
-       <AppContext API_KEY={API_KEY}>
-       {children}
-       </AppContext>
-       </Layout>
-        </body>
+          <AppContext API_KEY={API_KEY}>
+            {children}
+          </AppContext>
+        </Layout>
+      </body>
     </html>
   )
 }

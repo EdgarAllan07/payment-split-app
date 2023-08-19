@@ -1,7 +1,7 @@
 
 
 
-export const SendPayment = async (amount, address,API_KEY) => {
+export const SendPayment = async (amount, address, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/ln-address/send-payment", {
     method: "post",
     headers: {
@@ -21,7 +21,7 @@ export const SendPayment = async (amount, address,API_KEY) => {
   return data
 }
 
-export const ChargeQR = async (amount,API_KEY) => {
+export const ChargeQR = async (amount, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/charges", {
     method: "POST",
     headers: {
@@ -37,13 +37,13 @@ export const ChargeQR = async (amount,API_KEY) => {
     })
   })
 
-  
+
   const data = await response.json();
   return data
 
 }
 
-export const ConsultarQR = async (id,API_KEY) => {
+export const ConsultarQR = async (id, API_KEY) => {
   const response = await fetch(`https://api.zebedee.io/v0/charges/${id}`, {
     method: 'get',
     maxBodyLength: Infinity,

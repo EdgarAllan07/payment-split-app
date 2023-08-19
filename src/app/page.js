@@ -1,7 +1,7 @@
 
 
 import FormPayment from '@/components/FormPayment'
-  async function Home() {
+async function Home() {
 
   return (
     <main>

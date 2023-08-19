@@ -11,7 +11,7 @@ export const useApp = () => {
   return context;
 };
 
-function AppContext({ children,API_KEY }) {
+function AppContext({ children, API_KEY }) {
   const [data, setData] = useState({
     amount: "",
     address1: "",
@@ -19,20 +19,20 @@ function AppContext({ children,API_KEY }) {
   });
 
   async function sendPay(amount, address) {
-    const key = API_KEY
-    const res = await SendPayment(amount, address,key);
+    const key = API_KEY;
+    const res = await SendPayment(amount, address, key);
     return res;
   }
 
   async function charge(amount) {
-    const key = API_KEY
-    const res = await ChargeQR(amount,key);
+    const key = API_KEY;
+    const res = await ChargeQR(amount, key);
     return res;
   }
 
   async function consult(id) {
-    const key = API_KEY
-    const res = await ConsultarQR(id,key);
+    const key = API_KEY;
+    const res = await ConsultarQR(id, key);
     return res;
   }
 
