@@ -59,7 +59,7 @@ function FormPayment() {
             name="address2"
             className="block w-full text-sm text-white bg-slate-600 my-2 px-5 py-3 rounded-md"
             {...register("address2", { required: true })}
-            placeholder="First Lightning address"
+            placeholder="Second Lightning address"
             required
           />
           <div className="flex justify-center items-center mt-5">

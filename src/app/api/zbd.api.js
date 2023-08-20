@@ -1,6 +1,6 @@
 
 
-
+//Send payment to Lightning address
 export const SendPayment = async (amount, address, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/ln-address/send-payment", {
     method: "post",
@@ -21,6 +21,7 @@ export const SendPayment = async (amount, address, API_KEY) => {
   return data
 }
 
+//Make the charge
 export const ChargeQR = async (amount, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/charges", {
     method: "POST",
@@ -43,6 +44,7 @@ export const ChargeQR = async (amount, API_KEY) => {
 
 }
 
+//Consult if the charge is paid
 export const ConsultarQR = async (id, API_KEY) => {
   const response = await fetch(`https://api.zebedee.io/v0/charges/${id}`, {
     method: 'get',
