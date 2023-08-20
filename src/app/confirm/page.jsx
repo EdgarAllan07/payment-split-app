@@ -45,7 +45,7 @@ function Page() {
         console.error(error);
       }
     };
-    setInterval(getID, 4000);
+    setInterval(getID, 3000);
   });
 
   useEffect(() => {
@@ -66,9 +66,11 @@ function Page() {
         if (estado == "completed") {
           const pay1 = await sendPay(half.toString(), data.address1);
           const pay2 = await sendPay(half.toString(), data.address2);
+
           toast.success(
             `Payment sent to ${data.address1} for ${half / 1000} satoshis.`
           );
+          
           toast.success(
             `Payment sent to ${data.address2} for ${half / 1000} satoshis.`
           );
@@ -76,6 +78,7 @@ function Page() {
         }
       } catch (error) {
         console.error(error);
+         
       }
     };
     makePay();
@@ -83,6 +86,7 @@ function Page() {
 
   return (
     <>
+    <div>
       <h1 className="text-center text-4xl font-bold mt-12 mb-6 text-white">
         Pay Charge to split payment
       </h1>
@@ -92,7 +96,7 @@ function Page() {
             Succesed
           </h1>
         ) : (
-          <img src={qrCodeData} className="max-h-min max-w-md my-0 mx-auto" />
+          <img src={qrCodeData} className="max-h-min max-w-sm my-0 mx-auto" />
         )}
       </div>
       <div className="flex justify-center align-middle mt-10">
@@ -101,6 +105,7 @@ function Page() {
             navigator.clipboard.writeText(bolt11);
           }}
           className="bg-blue-700 rounded-md shadow-md py-2 px-4 cursor-pointer hover:bg-blue-900  text-white font-bold mx-2"
+          hidden={estado === "completed"? true :false }
         >
           Copy
         </button>
@@ -112,6 +117,7 @@ function Page() {
         >
           Return
         </button>
+      </div>
       </div>
     </>
   );

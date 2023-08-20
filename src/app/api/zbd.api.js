@@ -56,3 +56,4 @@ export const ConsultarQR = async (id, API_KEY) => {
   const data = await response.json()
   return data
 }
+
