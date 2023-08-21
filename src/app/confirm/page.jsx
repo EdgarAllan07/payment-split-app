@@ -18,7 +18,6 @@ function Page() {
   useEffect(() => {
     const getQR = async () => {
       if (data.amount == "") {
-        console.log("hola");
         toast.error("You must fill out the form fields first");
         navigate.push("/");
       } else {
@@ -46,7 +45,7 @@ function Page() {
       }
     };
     setInterval(getID, 3000);
-  });
+  },[id]);
 
   useEffect(() => {
     if (bolt11) {
