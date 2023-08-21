@@ -38,7 +38,7 @@ export const ChargeQR = async (amount, API_KEY) => {
     })
   })
 
-
+  console.log(amount,API_KEY)
   const data = await response.json();
   return data
 
@@ -51,7 +51,7 @@ export const ConsultarQR = async (id, API_KEY) => {
     maxBodyLength: Infinity,
     headers: {
       'Content-Type': 'application/json',
-      'apikey': 'h0YsMAWwAZ1qP588e7YAOQDehWta5KtY'
+      'apikey': API_KEY
     }
   })
 
