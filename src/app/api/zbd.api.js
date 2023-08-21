@@ -5,7 +5,7 @@ export const SendPayment = async (amount, address, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/ln-address/send-payment", {
     method: "post",
     headers: {
-      "apikey": "h0YsMAWwAZ1qP588e7YAOQDehWta5KtY",
+      "apikey": API_KEY,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
