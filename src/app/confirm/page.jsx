@@ -35,9 +35,7 @@ function Page() {
         if (id) {
           const res = await consult(id);
           setEstado(res.data.status); 
-        } else {
-          console.log("nothing");
-        }
+        } 
       } catch (error) {
         console.error(error);
       }
