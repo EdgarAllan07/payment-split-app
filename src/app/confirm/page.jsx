@@ -22,7 +22,6 @@ function Page() {
         navigate.push("/");
       } else {
         const res = await charge(sats.toString());
-        console.log(res)
         setBolt11(res.data.invoice.request);
         setID(res.data.id);
       }
@@ -35,8 +34,7 @@ function Page() {
       try {
         if (id) {
           const res = await consult(id);
-          setEstado(res.data.status);
-          console.log(res, id);
+          setEstado(res.data.status); 
         } else {
           console.log("nothing");
         }
