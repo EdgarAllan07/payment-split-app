@@ -24,7 +24,7 @@ export const SendPayment = async (amount, address, API_KEY) => {
 //Make the charge
 export const ChargeQR = async (amount, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/charges", {
-    method: "POST",
+    method: "post",
     headers: {
       "apikey": API_KEY,
       'Content-Type': 'application/json'
@@ -38,7 +38,6 @@ export const ChargeQR = async (amount, API_KEY) => {
     })
   })
 
-  console.log(amount,API_KEY)
   const data = await response.json();
   return data
 

@@ -22,11 +22,11 @@ function Page() {
         navigate.push("/");
       } else {
         const res = await charge(sats.toString());
+        console.log(res)
         setBolt11(res.data.invoice.request);
         setID(res.data.id);
       }
     };
-
     getQR();
   }, []);
 
