@@ -4,9 +4,10 @@ import { useApp } from "@/context/AppContext";
 import QRCode from "qrcode"; // Import the qrcode library
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 function PageConfirm() {
-  const { data, charge, sendPay, consult,setData } = useApp();
+  const { data, charge, sendPay, consult, setData } = useApp();
   const sats = parseInt(data.amount) * 1000;
   const [half, setHalf] = useState(sats / 2);
   const navigate = useRouter();
@@ -34,14 +35,14 @@ function PageConfirm() {
       try {
         if (id) {
           const res = await consult(id);
-          setEstado(res.data.status); 
-        } 
+          setEstado(res.data.status);
+        }
       } catch (error) {
         console.error(error);
       }
     };
     setInterval(getID, 3000);
-  },[id]);
+  }, [id]);
 
   useEffect(() => {
     if (bolt11) {
@@ -62,15 +63,14 @@ function PageConfirm() {
           const pay1 = await sendPay(half.toString(), data.address1);
           const pay2 = await sendPay(half.toString(), data.address2);
 
-          if(pay1.success ===  false || pay2.success == false)
-          {
-            return navigate.push("/return")
+          if (pay1.success === false || pay2.success == false) {
+            return navigate.push("/return");
           }
 
           toast.success(
             `Payment sent to ${data.address1} for ${half / 1000} satoshis.`
           );
-          
+
           toast.success(
             `Payment sent to ${data.address2} for ${half / 1000} satoshis.`
           );
@@ -78,12 +78,11 @@ function PageConfirm() {
             amount: "",
             address1: "",
             address2: "",
-          })
+          });
           navigate.push("/");
         }
       } catch (error) {
         console.error(error);
-         
       }
     };
     makePay();
@@ -91,38 +90,38 @@ function PageConfirm() {
 
   return (
     <>
-    <div>
-      <h1 className="text-center text-4xl font-bold mt-12 mb-6 text-white">
-        Pay Charge to split payment
-      </h1>
-      <div className="flex flex-col align-center justify-center">
-        {estado !== "pending" ? (
-          <h1 className="text-center text-4xl font-bold mt-12 mb-6 text-green-900 border-x-gray-50">
-            Scan completed
-          </h1>
-        ) : (
-          <img src={qrCodeData} className="max-h-min max-w-sm my-0 mx-auto" />
-        )}
-      </div>
-      <div className="flex justify-center align-middle mt-10">
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(bolt11);
-          }}
-          className="bg-blue-700 rounded-md shadow-md py-2 px-4 cursor-pointer hover:bg-blue-900  text-white font-bold mx-2"
-          hidden={estado === "completed"? true :false }
-        >
-          Copy
-        </button>
-        <button
-          className="bg-blue-700 rounded-md shadow-md py-2 px-4 cursor-pointer hover:bg-blue-900  text-white font-bold mx-2"
-          onClick={() => {
-            navigate.push("/");
-          }}
-        >
-          Return
-        </button>
-      </div>
+      <div>
+        <h1 className="text-center text-4xl font-bold mt-12 mb-6 text-white">
+          Pay Charge to split payment
+        </h1>
+        <div className="flex flex-col align-center justify-center">
+          {estado !== "pending" ? (
+            <h1 className="text-center text-4xl font-bold mt-12 mb-6 text-green-900 border-x-gray-50">
+              Scan completed
+            </h1>
+          ) : (
+            <img src={qrCodeData} className="max-h-min max-w-sm my-0 mx-auto" />
+          )}
+        </div>
+        <div className="flex justify-center align-middle mt-10">
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(bolt11);
+            }}
+            className="bg-blue-700 rounded-md shadow-md py-2 px-4 cursor-pointer hover:bg-blue-900  text-white font-bold mx-2"
+            hidden={estado === "completed" ? true : false}
+          >
+            Copy
+          </button>
+          <button
+            className="bg-blue-700 rounded-md shadow-md py-2 px-4 cursor-pointer hover:bg-blue-900  text-white font-bold mx-2"
+            onClick={() => {
+              navigate.push("/");
+            }}
+          >
+            Return
+          </button>
+        </div>
       </div>
     </>
   );
