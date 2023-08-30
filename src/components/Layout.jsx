@@ -5,7 +5,7 @@ function Layout({ children }) {
   return (
     <>
       <Toaster toastOptions={{ duration: 5000 }}></Toaster>
-      <div className="  h-screen p-10" style={{ background: "#1a1a2e" }}>
+      <div className="  h-screen p-10 text-white" style={{ background: "#1a1a2e" }}>
         {children}
       </div>
     </>

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 function Page() {
-  const { data, charge, sendPay, consult } = useApp();
+  const { data, charge, sendPay, consult,setData } = useApp();
   const sats = parseInt(data.amount) * 1000;
   const [half, setHalf] = useState(sats / 2);
   const navigate = useRouter();
@@ -19,7 +19,7 @@ function Page() {
     const getQR = async () => {
       if (data.amount == "") {
         toast.error("You must fill out the form fields first");
-        navigate.push("/");
+        return navigate.push("/");
       } else {
         const res = await charge(sats.toString());
         setBolt11(res.data.invoice.request);
@@ -62,6 +62,11 @@ function Page() {
           const pay1 = await sendPay(half.toString(), data.address1);
           const pay2 = await sendPay(half.toString(), data.address2);
 
+          if(pay1.success ===  false || pay2.success == false)
+          {
+            return navigate.push("/return")
+          }
+
           toast.success(
             `Payment sent to ${data.address1} for ${half / 1000} satoshis.`
           );
@@ -69,6 +74,11 @@ function Page() {
           toast.success(
             `Payment sent to ${data.address2} for ${half / 1000} satoshis.`
           );
+          setData({
+            amount: "",
+            address1: "",
+            address2: "",
+          })
           navigate.push("/");
         }
       } catch (error) {
@@ -88,7 +98,7 @@ function Page() {
       <div className="flex flex-col align-center justify-center">
         {estado !== "pending" ? (
           <h1 className="text-center text-4xl font-bold mt-12 mb-6 text-green-900 border-x-gray-50">
-            Succesed
+            Scan completed
           </h1>
         ) : (
           <img src={qrCodeData} className="max-h-min max-w-sm my-0 mx-auto" />

@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useState, createContext } from "react";
-import { SendPayment, ChargeQR, ConsultarQR } from "@/app/api/zbd.api";
+import { SendPayment, ChargeQR, ConsultarQR,postRetirar,getRetirar } from "@/app/api/zbd.api";
 const AppProvider = createContext();
 
 export const useApp = () => {
@@ -36,6 +36,19 @@ function AppContext({ children, API_KEY }) {
     return res;
   }
 
+  async function getWithdrawal(id){
+    const key =  API_KEY;
+    const res = await getRetirar(id,key)
+    return res
+  }
+
+  
+  async function postWithdrawal(amount){
+    const key =  API_KEY;
+    const res = await postRetirar(amount,key)
+    return res
+  }
+
   return (
     <div>
       <AppProvider.Provider
@@ -45,6 +58,8 @@ function AppContext({ children, API_KEY }) {
           sendPay,
           charge,
           consult,
+          getWithdrawal,
+          postWithdrawal
         }}
       >
         {children}
