@@ -60,14 +60,14 @@ export const ConsultarQR = async (id, API_KEY) => {
 }
 
 
-export const postRetirar = async (amount,API_KEY) =>{
-  const response = await fetch("https://api.zebedee.io/v0/withdrawal-requests",{
+export const PostRetirar = async (amount, API_KEY) => {
+  const response = await fetch("https://api.zebedee.io/v0/withdrawal-requests", {
     method: "post",
-    headers:{
+    headers: {
       'Content-Type': 'application/json',
       'apikey': API_KEY
     },
-    body:JSON.stringify({
+    body: JSON.stringify({
       "amount": amount,
       "description": "Withdraw QR!",
       "expiresIn": 300,
@@ -80,18 +80,18 @@ export const postRetirar = async (amount,API_KEY) =>{
   return data
 }
 
-export const getRetirar = async (id,API_KEY)=>{
-try{
-  const response = await fetch(`https://api.zebedee.io/v0/withdrawal-requests/${id}`,{
-  headers:{
-    'Content-Type': 'application/json',
-    'apikey': API_KEY
-  }
-})
+export const GetRetirar = async (id, API_KEY) => {
+  try {
+    const response = await fetch(`https://api.zebedee.io/v0/withdrawal-requests/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': API_KEY
+      }
+    })
 
-const data= response.json()
-return data
-}catch(error){
-  console.log(error)
-}
+    const data = response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }

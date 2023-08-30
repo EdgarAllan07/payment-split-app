@@ -5,7 +5,7 @@ import QRCode from "qrcode"; // Import the qrcode library
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-function Page() {
+function PageConfirm() {
   const { data, charge, sendPay, consult,setData } = useApp();
   const sats = parseInt(data.amount) * 1000;
   const [half, setHalf] = useState(sats / 2);
@@ -128,4 +128,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default PageConfirm;
