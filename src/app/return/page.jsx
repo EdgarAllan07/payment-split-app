@@ -5,7 +5,7 @@ import QRCode from "qrcode";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-function page() {
+function Page() {
   const {data, getWithdrawal, postWithdrawal,setData} = useApp()
   const sats = parseInt(data.amount) * 1000;
   const [id, setID] = useState("");
@@ -89,4 +89,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
