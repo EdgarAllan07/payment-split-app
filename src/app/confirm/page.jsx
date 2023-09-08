@@ -62,10 +62,7 @@ function PageConfirm() {
         if (estado == "completed") {
           const pay1 = await sendPay(half.toString(), data.address1);
           const pay2 = await sendPay(half.toString(), data.address2);
-          console.log(` datos primer pago ${half.toString()}, ${data.address1} `)
-          console.log(` datos segundo pago ${half.toString()}, ${data.address2} `)
-          console.log(pay1)
-          console.log(pay2)
+
           if (pay1.success === false || pay2.success == false) {
             return navigate.push("/return");
           }
