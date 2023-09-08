@@ -32,7 +32,7 @@ function PageReturn() {
     const getWD = async () => {
       if (id !== "") {
         const res = await getWithdrawal(id);
-        console.log(res);
+        
         setStatus(res.data.status);
       }
     };
