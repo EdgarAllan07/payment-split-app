@@ -1,6 +1,3 @@
-import { API_KEY } from "../../../config"
-
-
 //Send payment to Lightning address
 export const SendPayment = async (amount, address, API_KEY) => {
   const response = await fetch("https://api.zebedee.io/v0/ln-address/send-payment", {
