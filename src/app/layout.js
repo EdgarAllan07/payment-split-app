@@ -21,7 +21,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" type="image/png" sizes="32x32"  href="./favicon.ico"/>
-    <!-- Hotjar Tracking Code for Site 3914480 (name missing) -->
 <script>
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
